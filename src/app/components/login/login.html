@@ -32,6 +32,13 @@
           <input id="password" [formField]="loginForm.password" type="password" autocomplete="current-password"
             class="block w-full rounded-md bg-white/5 px-3 py-1.5 text-base outline-1 -outline-offset-1 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-500 sm:text-sm/6" />
         </div>
+        @if(loginForm.password().invalid() && (loginForm.password().dirty() || loginForm.password().touched())) {
+        <div class="mt-2 text-sm text-red-500">
+          @for (error of loginForm.password().errors(); track error) {
+          <span>{{ error.message }}</span>
+          }
+        </div>
+        }
       </div>
 
       <div>
